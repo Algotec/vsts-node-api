@@ -6,6 +6,7 @@
 //----------------------------------------------------------------------------
 
 import Serialization = require('../../Serialization');
+export {IRequestHandler,IRequestOptions ,IHttpClientResponse,IHeaders,IProxyConfiguration,ICertConfiguration} from 'typed-rest-client/Interfaces';
 
 /**
  * Information about the location of a REST API resource
@@ -45,41 +46,4 @@ export interface ApiResourceLocation {
     routeTemplate: string;
 }
 
-export interface IHeaders { [key: string]: any };
 
-export interface IBasicCredentials {
-    username: string;
-    password: string;
-}
-
-export interface IRequestHandler {
-    prepareRequest(options: any): void;
-    canHandleAuthentication(res: IHttpResponse): boolean;
-    handleAuthentication(httpClient, protocol, options, objs, finalCallback): void;
-}
-
-export interface IHttpResponse {
-    statusCode?: number;
-    headers: any;
-}
-
-export interface IRequestOptions {
-    socketTimeout?: number,
-    ignoreSslError?: boolean,
-    proxy?: IProxyConfiguration
-    cert?: ICertConfiguration
-}
-
-export interface IProxyConfiguration {
-    proxyUrl: string;
-    proxyUsername?: string;
-    proxyPassword?: string;
-    proxyBypassHosts?: string[];
-}
-
-export interface ICertConfiguration {
-    caFile?: string;
-    certFile?: string;
-    keyFile?: string;
-    passphrase?: string;
-}
