@@ -17,11 +17,6 @@ var run = function (cl) {
 		exit(rc);
 	}
 }
-function renamePackage(pjsonPath = './_build/package.json') {
-	const pjson = require(pjsonPath);
-	pjson.name = pjson.name.replace('-sources', '');
-	fs.writeFileSync(pjsonPath, JSON.stringify(pjson));
-}
 
 target.clean = function () {
 	rm('-Rf', buildPath);
@@ -45,7 +40,8 @@ target.build = function () {
 	rm(path.join(buildPath, 'index.*'));
 }
 function renamePackage(pjson) {
-	pjson.name = pjson.name.replace('-sources', '');
+	if (pjson.name){
+		pjson.name = pjson.name.replace('-sources', '');}
 	return pjson;
 }
 
